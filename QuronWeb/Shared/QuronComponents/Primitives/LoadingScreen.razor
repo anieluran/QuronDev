@@ -1,0 +1,34 @@
+﻿@if (isLoaded)
+{
+    @ChildContent
+}
+else
+{
+<div  style="position:absolute; top:30vh; width:100%; text-align:center">
+    <h1>Quron</h1>
+    <MatThemeProvider Theme="@theme">
+        <div class="qp-fadein">
+        <MatProgressBar Indeterminate="true"></MatProgressBar>
+            </div>
+    </MatThemeProvider>
+</div>
+}
+
+@code {
+    MatTheme theme = new MatTheme()
+    {
+        Primary = "black",
+
+    };
+
+    bool isLoaded;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000); // TODO actual initialization job
+        isLoaded = true;
+    }
+}

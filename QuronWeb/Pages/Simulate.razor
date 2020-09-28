@@ -1,0 +1,250 @@
+﻿@inject IJSRuntime Js;
+
+
+    <div id="simulatePage" class="navPage">
+        <div class="moduleContainer">
+            <div class="modulePage">
+                <NewSimulation />
+            </div>
+
+
+            <TabsBar />
+        </div>
+        <div class="resize-Xaxis" onmousedown="consoleResize()"></div>
+    </div>
+
+
+
+@code {
+
+
+}
+
+
+<style>
+    #simulatePage {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+    }
+
+
+    .moduleContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--modal-bgColor);
+        overflow: hidden;
+    }
+
+
+    .modulePage {
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .resize-Xaxis {
+        max-width: 3px;
+        min-width: 3px;
+        cursor: col-resize;
+        background-color: var(--main-bgColor);
+    }
+
+    #propertiesModal {
+        min-width: 300px;
+        max-width: 300px;
+        /*border-radius: 2px;*/
+        background-color: var(--modal-bgColor);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #allProperties {
+        flex: 1;
+    }
+
+    #runButton {
+        min-height: 30px;
+        background-color: var(--accent-Color);
+        text-align: center;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--accentFont-Color);
+        display: flex;
+        flex-direction: column;
+    }
+
+        #runButton:hover {
+            background-color: var(--accent-Color-Selected)
+        }
+
+    #runIcon {
+        align-self: center;
+        text-align: center;
+    }
+
+
+
+
+
+    .performanceChart {
+        height: 40%;
+        min-height: 400px;
+        overflow: hidden;
+    }
+
+
+    .reportTable table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .reportTable td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid var(--reportTable-BorderColor);
+    }
+
+        .reportTable td:first-of-type {
+            text-align: left;
+        }
+
+        .reportTable td:last-of-type {
+        }
+
+    .reportTable tr {
+        background-color: var(--reportTableRow-bgColor);
+        color: var(--reportTableRow-Color);
+    }
+
+        .reportTable tr:hover {
+            background-color: var(--reportTableRow-bgColor-Hover);
+        }
+
+        .reportTable tr:last-of-type td:first-of-type {
+            /*border-bottom-left-radius: 6px;*/
+        }
+
+        .reportTable tr:last-of-type td:last-of-type {
+            /*border-bottom-right-radius: 6px;*/
+        }
+
+
+    .reportTable th {
+        text-align: center;
+        background-color: var(--reportTableHeader-bgColor);
+        color: var(--reportTableHeader-Color);
+        font-weight: 400;
+    }
+
+        .reportTable th:first-of-type {
+            /*border-top-left-radius: 6px;*/
+        }
+
+        .reportTable th:last-of-type {
+            /*border-top-right-radius: 6px;*/
+        }
+
+    .divider {
+        flex: 1;
+        max-width: 4px;
+    }
+
+    /*.pieChart {
+        margin-right: 3px;
+        justify-self: center;
+    }
+    .lineChart {
+        margin-left: 3px;
+    }*/
+
+    .modalHeader {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        max-height: 25px;
+        color: white;
+        background-color: var(--reportTableHeader-bgColor);
+        /*border-top-left-radius: 6px;
+        border-top-right-radius: 6px;*/
+    }
+
+    .modalTitle {
+        flex: 1;
+        text-align: center;
+    }
+
+    .modalContent {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        background-color: var(--reportTableRow-bgColor);
+        /*border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;*/
+        padding-top: 4px;
+    }
+
+    .gridRow {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .rowModal {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        overflow: hidden;
+        margin-top: 4px;
+    }
+
+
+
+    /* Float four columns side by side */
+    .column {
+        float: left;
+        width: 25%;
+        padding: 0 10px;
+    }
+
+    /* Remove extra left and right margins, due to padding in columns */
+    .row {
+        margin: 0 -5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+    /* Style the counter cards */
+    .card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+        padding: 16px;
+        text-align: center;
+        background-color: #1a1a1e;
+        height: 100%;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 10px;
+    }
+
+        .card:hover {
+            background-color: #1c1c21;
+        }
+</style>
+

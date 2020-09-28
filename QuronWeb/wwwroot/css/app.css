@@ -1,0 +1,103 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+
+*:focus {
+    outline: none;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #00000000;
+}
+
+*::-webkit-scrollbar {
+    width: 4px;
+    background-color: #00000000;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(157, 157, 157, 0.75);
+    border-radius: 50px;
+}
+
+    *::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(157, 157, 157, 1);
+    }
+
+:root {
+    --window-bgColor: white;
+    --main-bgColor: #d2d5dd;
+    --modal-bgColor: white;
+    --accent-Color: #009aff;
+    --accent-Color-Selected: #0796f3;
+    --accentFont-Color: white;
+    --consoleBar-bgColor: white;
+    --consoleButton-Color: dimgrey;
+    --consoleButton-Color-Hover: #7e7e7e;
+    --consoleWindow-bgColor: #252526;
+    --sideNav-bgColor: #f0f3fa;
+    --sideNavButton-Color: dimgrey;
+    --sideNavButton-bgColor-Hover: #e0e3eb;
+    --sideNavButton-Color-Hover: dimgrey;
+    --sideNavButton-bgColor-Active: white;
+    --tabBar-bgColor: #f1f1f1;
+    --tabButton-bgColor-Active: white;
+    --tabButton-Color: dimgrey;
+    --tabButton-Color-Hover: black;
+    --closeTabButton-Color: #d2d5dd;
+    --closeTabButton-Color-Hover: #adadae;
+    --newTabButton-bgColor-Hover: #ddd;
+    --reportTableHeader-bgColor: #f2f2f2;
+    --reportTableHeader-Color: dimgrey;
+    --reportTableRow-bgColor: #f8f8f8;
+    --reportTableRow-bgColor-Hover: white;
+    --reportTableRow-Color: black;
+    --reportTable-BorderColor: #f2f2f2;
+    --editorTopBar-bgColor: #f2f2f2;
+    --editorTopBar-BorderColor: #e0e0e0;
+    --fileExplorer-bgColor: #f0f1f8;
+}
+
+    :root[theme='dark'] {
+        --window-bgColor: black;
+        --main-bgColor: #1c1e25;
+        --modal-bgColor: #141417;
+        --accent-Color: #009aff;
+        --accent-Color-Selected: #0796f3;
+        --accentFont-Color: white;
+        --consoleBar-bgColor: #141417;
+        --consoleButton-Color: silver;
+        --consoleButton-Color-Hover: white;
+        --consoleWindow-bgColor: #090909;
+        --sideNav-bgColor: #0e0e10;
+        --sideNavButton-Color: #787878;
+        --sideNavButton-bgColor-Hover: #141417;
+        --sideNavButton-Color-Hover: silver;
+        --sideNavButton-bgColor-Active: #1b1b1f;
+        --tabBar-bgColor: #0e0e11;
+        --tabButton-bgColor-Active: #141417;
+        --tabButton-Color: dimgrey;
+        --tabButton-Color-Hover: white;
+        --closeTabButton-Color: dimgrey;
+        --closeTabButton-Color-Hover: #868686;
+        --newTabButton-bgColor-Hover: #19191e;
+        /*--reportTableHeader-bgColor: #444b5d;*/
+        --reportTableHeader-bgColor: #2f2f34;
+        --reportTableHeader-Color: white;
+        /*--reportTableRow-bgColor: #282a36;*/
+        --reportTableRow-bgColor: #232327;
+        /*--reportTableRow-bgColor-Hover: #323441;*/
+        --reportTableRow-bgColor-Hover: #2b2b30;
+        --reportTableRow-Color: white;
+        --reportTable-BorderColor: transparent;
+        --editorTopBar-bgColor: #1a1b1f;
+        --editorTopBar-BorderColor: #3c3b42;
+        --fileExplorer-bgColor: #22252b;
+    }
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}

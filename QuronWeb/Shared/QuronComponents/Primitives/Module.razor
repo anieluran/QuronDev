@@ -1,0 +1,85 @@
+﻿<div class="qp-module">
+    @if (Title != string.Empty)
+    {
+    <div class="qp-module-header">
+        <div class="qp-module-header-left">
+            @if (OnBackButton.HasDelegate)
+            {
+                <span @onclick="OnBackButton" class="qp-button-back oi oi-arrow-thick-left">
+                </span>
+            }
+        </div>
+        <div class="qp-module-header-title">
+            <span>@Title</span>
+        </div>
+        <div class="qp-module-header-right"></div>
+    </div>
+    }
+    <div class="qp-module-content">
+        
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnBackButton { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
+
+<style>
+    .qp-module {
+        box-shadow: 0 0 6px #e5e5e5;
+        border: 1px solid #e1e2e8;
+        flex: 1;
+        /*min-height: 50vh;*/
+    }
+
+    .qp-module-header {
+        flex: 1;
+        width: 100%;
+        padding: 0.8rem;
+        text-align: center;
+        color: #282828;
+        font-weight: bold;
+        font-size: 0.85rem;
+        background-color: white;
+        border-bottom: 1px solid #e1e2e8;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .qp-module-header-title {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .qp-module-header-left {
+        display: flex;
+        flex: 1;
+        
+        align-items: center;
+    }
+
+    .qp-module-header-right {
+        display: flex;
+        flex: 1;
+        
+        align-items: center;
+    }
+
+    .qp-button-back {
+        font-size: 0.7rem;      
+        cursor: pointer;
+        justify-self: flex-start;
+    }
+</style>

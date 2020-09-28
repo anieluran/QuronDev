@@ -1,0 +1,234 @@
+﻿@*
+    Below is commented out because @onmouseleave is unsupported by blazor currently. too lazy for workaround so using javascript :(   p.s. hoverTab function is inside UI.js
+*@
+
+@*@onmouseover="@( () =>
+    {
+        tab.IsHover = true;
+    })"
+    @onmouseout="@( () =>
+    {
+    tab.IsHover = false;
+    })"
+
+    @(tab.IsHover ? "block" : "none")*@
+
+<div class="tabBar  @(InitialLoad ? null : "qp-fadein-right")">
+
+    @foreach (Tab tab in Tabs)
+    {
+        <div class="tab @(tab.IsActive ? "active" : "")" onmouseover="hoverTab(event)">
+            <button class="openTab" @onclick="@(() => SelectTab(tab))"> @tab.Name </button>
+            <button class="closeTab" @onclick="@(() => RemoveTab(tab))">
+                <span class="closeTabIcon oi oi-x" style="display: none">
+                </span>
+            </button>
+        </div>
+    }
+
+    @if (MakeAddButtonVisible)
+    {
+        <div class="newTab" @onclick="@(() => AddTab("Report ("+TabCounter+")"))">
+            <button> + </button>
+        </div>
+    }
+
+</div>
+
+
+@code {
+
+    //[CascadingParameter]
+    public List<Tab> Tabs { get; set; } = new List<Tab>();
+
+    [Parameter]
+    public bool MakeAddButtonVisible { get; set; } = true;
+
+    public int ActiveTabId;
+
+    private int TabCounter = 1;
+
+    public bool InitialLoad;
+
+    protected override void OnInitialized()
+    {
+        AddTab("Report");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        if (firstRender)
+        {
+            await Task.Delay(500);
+            InitialLoad = true;
+            StateHasChanged();
+        }
+
+    }
+
+    public void AddTab(string tabName)
+    {
+        TabCounter++;
+        Tabs.Add(new Tab()
+        {
+            Id = TabCounter,
+            Name = tabName,
+
+        });
+
+        if (Tabs.Count > 1)
+        {
+            foreach (Tab tab in Tabs)
+            {
+                if (tab.IsActive)
+                {
+                    tab.IsActive = false;
+                }
+            }
+        }
+
+        Tabs[Tabs.Count - 1].IsActive = true;
+        ActiveTabId = Tabs[Tabs.Count - 1].Id;
+
+    }
+
+    public void RemoveTab(Tab tab)
+    {
+        if (Tabs.Count > 1)
+        {
+            Tabs.Remove(tab);
+
+            if (tab.IsActive)
+            {
+                tab.IsActive = false;
+                Tabs[Tabs.Count - 1].IsActive = true;
+                ActiveTabId = Tabs[Tabs.Count - 1].Id;
+            }
+
+        }
+
+    }
+
+    public void SelectTab(Tab tab)
+    {
+        if (Tabs.Count > 1)
+        {
+            foreach (Tab t in Tabs)
+            {
+                if (t.IsActive && t.Id != tab.Id)
+                {
+                    t.IsActive = false;
+                }
+
+                if (t.Id == tab.Id)
+                {
+                    t.IsActive = true;
+                    ActiveTabId = tab.Id;
+                }
+            }
+        }
+    }
+
+
+    public class Tab
+    {
+        public int Id;
+        public string Name;
+        public bool IsActive;
+        public bool IsHover;
+    }
+
+
+}
+
+
+
+<style>
+
+    .tabBar {
+        height: 1.5rem;
+        /*min-height: 1rem;*/
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        background-color: var(--tabBar-bgColor);
+        border-top: 4px solid var(--modal-bgColor);
+    }
+
+
+    .tab {
+        height: 100%;
+        min-width: 5.5rem;
+        max-width: 8rem;
+        flex: 1;
+        font-size: 0.7rem;
+        text-align: left;
+        /*border-bottom-right-radius: 6px;*/
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        color: var(--tabButton-Color);
+    }
+
+        .tab.active {
+            background-color: var(--modal-bgColor);
+            color: var(--accent-Color);
+        }
+
+        .tab button {
+            border: none;
+            outline: none;
+        }
+
+
+    .openTab {
+        flex: 1;
+        background-color: inherit;
+        color: var(--TabButton-Color);
+    }
+
+    .closeTab {
+        text-align: end;
+        font-size: 8px;
+        width: 1rem;
+        color: var(--closeTabButton-Color);
+        background-color: inherit;
+    }
+
+        .closeTab:hover {
+            color: var(--closeTabButton-Color-Hover);
+            display: block;
+        }
+
+    .newTab {
+        display: flex;
+        flex-direction: row;
+        min-width: 50px;
+        float: left;
+        cursor: pointer;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        border-bottom-right-radius: 6px;
+        color: var(--tabButton-Color);
+        overflow: hidden;
+    }
+
+        .newTab button {
+
+            background-color: inherit;
+            border: none;
+            outline: none;
+            text-align: center;
+            align-content: center;
+            color: inherit;
+        }
+
+            .newTab:hover, .newTab button:hover {
+                background-color: var(--newTabButton-bgColor-Hover);
+                color: var(--tabButton-Color-Hover);
+            }
+</style>

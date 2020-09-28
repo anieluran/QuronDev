@@ -1,0 +1,37 @@
+﻿@*<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">*@
+
+<DataGrid>
+    <tr>
+        <th>Algorithm</th>
+        <th>Data Series</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Net Profit</th>
+        <th>Returns</th>
+        <th>Trade Count</th>
+        <th>Mode</th>
+        <th>Duration</th>
+        <th>DateTime</th>
+    </tr>
+
+    @for (var i = 0; i < 10; i++)
+    {
+        <tr>
+            <td>FailSafe</td>
+            <td>USDJPY M1</td>
+            <td>06/20/1998</td>
+            <td>06/20/2020</td>
+            <td>$999,999</td>
+            <td>77.7%</td>
+            <td>1,618</td>
+            <td>Simple</td>
+            <td>@TimeSpan.FromSeconds(53)</td>
+            <td>@DateTime.Now</td>
+        </tr>
+    }
+</DataGrid>
+
+@code {
+
+}
+

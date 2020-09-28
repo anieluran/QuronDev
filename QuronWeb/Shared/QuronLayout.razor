@@ -1,0 +1,109 @@
+﻿@inherits LayoutComponentBase
+
+    <MatThemeProvider Theme="@theme">
+        <div id="main">
+            <SideNav />
+            <div id="page">
+                @Body
+            </div>
+
+        </div>
+        <div id="consoleResizer" onmousedown="consoleResize()"></div>
+        <div id="consoleBar">
+            <div id="consoleButton" onclick="toggleConsole()">
+                <span class="oi oi-command"></span>
+            </div>
+        </div>
+        <div id="consoleWindow">
+
+        </div>
+    </MatThemeProvider>
+
+    @code
+        {
+
+        MatTheme theme = new MatTheme()
+        {
+            Primary = "black"//"#2196f3",
+
+        };
+
+        
+    }
+
+<style>
+    html, body {
+        position: relative;
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+    }
+
+    #app {
+        display: flex;
+        flex-flow: column;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /*#sideBar {
+            min-width: 50px;
+            display: flex;
+            flex-flow: column;
+            overflow: hidden;
+        }*/
+
+    #main {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        background-color: var(--main-bgColor);
+        overflow: auto;
+    }
+
+    #page {
+        padding-left: 3px;
+        padding-right: 3px;
+        padding-bottom: 0px;
+        flex: 1;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    #consoleResizer {
+        max-height: 3px;
+        min-height: 3px;
+        cursor: row-resize;
+        background-color: var(--main-bgColor);
+    }
+
+    #consoleBar {
+        min-height: 27px;
+        font-size: 22px;
+        background-color: var(--consoleBar-bgColor);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    #consoleButton {
+        color: var(--consoleButton-Color);
+        align-self: center;
+        vertical-align: middle;
+        padding-bottom: 3px;
+    }
+
+        #consoleButton:hover {
+            color: var(--consoleButton-Color-Hover);
+        }
+
+    #consoleWindow {
+        position: relative;
+        min-height: 0px;
+        max-height: 0px;
+        background-color: var(--consoleWindow-bgColor);
+        transition: all .35s;
+    }
+</style>

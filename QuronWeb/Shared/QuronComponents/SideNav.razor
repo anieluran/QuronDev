@@ -1,0 +1,54 @@
+﻿@inject IJSRuntime JSRuntime
+
+<div class="sideNav ">
+    <div id="chartNav" class="sideNav-Button" onclick="updateNav('chartNav', 'FileExplorerTest')" data-toggle="tooltip" data-placement="right" title="Chart">
+        <span class="oi oi-bolt sideNav-Icon qp-fadein-right"></span>
+    </div>
+    <div id="simulateNav" class="sideNav-Button active" onclick="updateNav('simulateNav', 'simulatePage')" data-toggle="tooltip" data-placement="right" title="Simulate">
+        <span class="oi oi-graph sideNav-Icon qp-fadein-right"></span>
+    </div>
+    <div id="codeNav" class="sideNav-Button" onclick="updateNav('codeNav', 'codePage')" data-toggle="tooltip" data-placement="right" title="Code">
+        <span class="oi oi-code sideNav-Icon qp-fadein-right"></span>
+    </div>
+    <div id="settingsNav" class="sideNav-Button" onclick="updateNav('settingsNav')" data-toggle="tooltip" data-placement="right" title="Settings">
+        <span class="oi oi-cog sideNav-Icon qp-fadein-right"></span>
+    </div>
+</div>
+
+@code{
+  
+}
+
+<style>
+
+    .sideNav {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--sideNav-bgColor);
+        min-width: 2rem;
+        overflow: hidden;
+    }
+
+    .sideNav-Button {
+        display: flex;
+        height: 5.5rem;
+        min-height: 5rem;
+        color: var(--sideNavButton-Color);
+        justify-content: center;
+    }
+
+        .sideNav-Button:hover {
+            background-color: var(--sideNavButton-bgColor-Hover);
+            color: var(--sideNavButton-Color-Hover);
+        }
+
+        .sideNav-Button.active {
+            background-color: var(--sideNavButton-bgColor-Active);
+            color: var(--accent-Color);
+        }
+
+    .sideNav-Icon {
+        font-size: 21px;
+        align-self: center;
+    }
+</style>

@@ -1,0 +1,12 @@
+<LoadingScreen>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(QuronLayout)" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(QuronLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</LoadingScreen>
